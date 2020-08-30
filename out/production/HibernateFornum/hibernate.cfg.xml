@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <!--负责初始化hibernate-->
+    <session-factory>
+        
+      <!--连接数据库驱动-->
+       <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
+      <!--数据库地址-->
+       <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatelearn</property>
+      <!--数据库用户名-->
+       <property name="hibernate.connection.username">root</property>
+        <!--数据库用户密码-->
+      <property name="hibernate.connection.password">19951005</property>
+        <!--配置数据库的方言-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
+        <!--将hibernate生成的sql语句打印在控制台-->
+        <property name="hibernate.show_sql">true</property>
+        <!--格式化hibernate生成的sql语句-->
+        <property name="hibernate.format_sql">true</property>
+
+        <!--hibernate自动创建表
+           create:      每次框架运行,都会创建一个新的表,原来的数据将丢失(开发)
+           create-drop: 每次框架运行结束,都会删除数据库中所有的表(开发环境中测试使用)
+           update(推荐):  自动生成表,如果表已经存在,则更新数据,如果表不存在,就会创建一个新的表
+           validate:
+        -->
+
+       <!--<property name="hibernate.hbm2ddl.auto">create</property>-->
+
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!--配置数据库的隔离级别
+            1(0001)读未提交:最低的隔离级别,最没用(最快)
+            2(0010)读已提交:可避免脏读,不能避免不可重复读
+            4(0100)可重复度:可以避免不可重复读,可以避免脏读(mysql默认)
+            8(1000)串行化:最强大,一种都可以解决(最慢)-->
+
+        <property name="hibernate.connection.">4</property>
+
+         <!--配置事务(session与当前线程绑定-->
+         <property name="hibernate.current_session_context_class">thread</property>
+
+       <mapping resource="com/sikiedu/domain/User.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>
+
